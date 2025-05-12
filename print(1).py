@@ -214,12 +214,12 @@ class pen:
                 self.pen_list.pop(num)
 
 
-#test = pen(3)
+test = pen(3)
 #test.print()
 #test[0] = 56
 #print(test[0])
 #print(test.is_equal(0, 1))
 #print(test.is_less_than(4, 1))
-#print(test.add_uses())
+print(test.add_uses())
 #print(len(test))
 #print(test.milk('black'))
