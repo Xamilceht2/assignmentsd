@@ -64,21 +64,19 @@ class Tree:
         # Students will implement this
         if self.root == None:
             self.root = Node(value)
-            done = True
         
         current_node = self.root
         
+        while True:
         
-        
-        while done == False:
-        
+            if value == current_node.value:
+                return True
             # Go left (less than)
             if value < current_node.value:
                 
                 # if node has no child
                 if current_node.left == None:
-                    current_node.left = Node(value)
-                    done = True
+                    return False
                 
                 else:
                     current_node = current_node.left
@@ -86,28 +84,28 @@ class Tree:
             else:
                  # if node has no child
                 if current_node.right == None:
-                    current_node.right = Node(value)
-                    done = True
+                    return False
                 else:
                     current_node = current_node.right
         
     def display(self, node):
         alist = []
         if node.left != None:
-            alist = [self.display(node.left)]
-        print(node.value)
-        print(alist)
+            alist = self.display(node.left)
+
         alist.append(node.value)
-        print(alist)
+
         if node.right != None:
-            alist.append(self.display(node.right))
+            alist += self.display(node.right)
+
+        return alist
 
     def inorder_traversal(self):
         """
         Returns a list of values from an in-order traversal of the tree.
         """
         # Students will implement this
-        self.display(self.root)
+        return self.display(self.root)
     
     
 myTree = Tree()
@@ -117,4 +115,13 @@ myTree.insert(20)
 myTree.insert(10)
 myTree.insert(200)
 myTree.insert(150)
-myTree.inorder_traversal()
+myTree.insert(200)
+myTree.insert(13)
+myTree.insert(5600)
+myTree.insert(1234)
+myTree.insert(92)
+myTree.insert(45)
+myTree.insert(984)
+myTree.insert(76)
+print(myTree.inorder_traversal())
+print(myTree.search(76))
