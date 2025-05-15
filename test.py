@@ -9,6 +9,27 @@ class Node:
         self.left = None
         self.right = None
 
+    def del_node(self, value):
+        if value < self.value:
+            #has LC
+            if self.left:
+                self.left = self.left.del_node(value)
+
+        if value > self.value:
+            #has RC
+            if self.right:
+                self.right = self.right.del_node(value)
+
+        else:
+            if not self.right and not self.left:
+                return None
+            if not self.right:
+                return self.left
+            if not self.left:
+                return self.right
+        
+        return self
+
 
 class Tree:
     def __init__(self):
@@ -52,8 +73,9 @@ class Tree:
                     done = True
                 else:
                     current_node = current_node.right
-                
-                
+
+    def delete(self, value):
+        self.root.del_node(value)
         
 
     def search(self, value):
@@ -107,46 +129,8 @@ class Tree:
         # Students will implement this
         return self.display(self.root)
     
-    def del_node(self, value):
-
-        done = False
-        
-        if self.root == None:
-            return ('Tree is empty')
-        
-        current_node = self.root
-        
-        while done == False:
-
-            if value == current_node.value:
-                done = True
-        
-            # Go left (less than)
-            elif value < current_node.value:
-                
-                # if node has no child
-                if current_node.left == None:
-                    return ('value has no node')
-                
-                else:
-                    current_node = current_node.left
-                    
-            elif value > current_node.value:
-                 # if node has no child
-                if current_node.right == None:
-                    return ('value has no node')
-                
-                else:
-                    current_node = current_node.right
-        #leaf node
-        if current_node.left == None and current_node.right == None:
-            print('hello')
-            current_node = None
-            print(current_node)
-        #has child
-
-        #has children
     
+
     
 myTree = Tree()
 myTree.insert(100)
@@ -163,5 +147,5 @@ myTree.insert(92)
 myTree.insert(45)
 myTree.insert(984)
 myTree.insert(76)
-myTree.del_node(13)
+myTree.delete(10)
 print(myTree.inorder_traversal())
